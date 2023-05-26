@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">BPoultry</string>
+
+    <string-array name="options_array">
+        <item>Option 1</item>
+        <item>Option 2</item>
+        <item>Option 3</item>
+        <item>Option 4</item>
+    </string-array>
+
 </resources>

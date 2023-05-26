@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".loginActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:background="@android:color/white">
 
         <ImageView
             android:layout_width="120dp"
@@ -21,21 +22,24 @@
             android:scaleType="centerCrop"
             android:layout_marginBottom="32dp" />
 
-        <Spinner
-            android:id="@+id/spinnerOptions"
+        <EditText
+            android:id="@+id/editTextUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:hint="Username"
+            android:inputType="text"
             android:background="@drawable/edittext_bg"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/darker_gray"
             android:padding="12dp"
-            android:entries="@array/options_array" />
+            android:layout_marginBottom="16dp" />
 
         <EditText
-            android:id="@+id/editTextNumber"
+            android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter a number"
-            android:inputType="number"
+            android:hint="Password"
+            android:inputType="textPassword"
             android:background="@drawable/edittext_bg"
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/darker_gray"
@@ -43,14 +47,33 @@
             android:layout_marginBottom="32dp" />
 
         <Button
-            android:id="@+id/buttonSubmit"
+            android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Submit"
+            android:text="Login"
             android:textColor="@android:color/white"
             android:background="@drawable/button_bg"
             android:padding="12dp"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/textViewForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forgot password?"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/textViewSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account? Sign up"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center_horizontal" />
 
     </LinearLayout>
 
