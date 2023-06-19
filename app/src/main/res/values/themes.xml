@@ -3,7 +3,36 @@
     <style name="Base.Theme.BPoultry" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Custom Attrs -->
+        <item name="primaryBackgroundColor">@android:color/white</item>
+        <item name="secondaryBackgroundColor">@color/lightSecondaryBackgroundColor</item>
+        <item name="secondaryBackgroundDimColor">@color/gray_50</item>
+        <item name="primaryTextColor">@color/colorPrimaryText</item>
+        <item name="primaryTintColor">@color/colorPrimary</item>
+        <item name="chartViewBackgroundColor">@color/chart_bg_color_light</item>
+        <item name="chartRangeSelectedBackgroundColor">@color/colorPrimary</item>
+        <item name="tooltipBackgroundColor">@color/colorPrimary</item>
+        <item name="chartGridLineColor">@color/gray_200</item>
+        <item name="dividerColor">@color/gray_200</item>
+        <item name="navSearchBackgroundColor">@color/gray_200</item>
+        <item name="secondaryTintColor">@color/colorPrimary</item>
+        <item name="blurColor">#88FFFFFF</item>
+        <item name="skeletonColor">@color/skeleton_color_light</item>
+        <item name="bubble_in_color">@color/bubble_in_color_light</item>
     </style>
 
     <style name="Theme.BPoultry" parent="Base.Theme.BPoultry" />
+
+    <style name="Theme.BPoultry.Fullscreen" parent="Theme.BPoultry">
+        <item name="android:actionBarStyle">@style/Widget.Theme.BPoultry.ActionBar.Fullscreen</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <style name="ThemeOverlay.BPoultry.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+
+
+    </style>
 </resources>

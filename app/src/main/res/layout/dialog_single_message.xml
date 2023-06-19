@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?><!--suppress AndroidUnknownAttribute -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+
+        <variable
+            name="title"
+            type="String" />
+
+
+        <variable
+            name="message"
+            type="String" />
+
+
+        <variable
+            name="positiveAction"
+            type="String" />
+
+
+        <variable
+            name="negativeAction"
+            type="String" />
+
+
+        <variable
+            name="isLoading"
+            type="boolean" />
+
+
+        <variable
+            name="cancelable"
+            type="boolean" />
+
+
+    </data>
+
+    <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/secondaryBackgroundColor"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:minWidth="320dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:ignore="MissingPrefix">
+
+
+        <LinearLayout
+            android:id="@+id/dialog_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="@{isLoading ? View.GONE : View.VISIBLE}">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:minWidth="320dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/heading"
+                    fontPath="@string/font_semi_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{title}"
+                    android:textColor="?attr/primaryTextColor"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="MissingPrefix" />
+
+
+                <TextView
+                    android:id="@+id/msg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="start"
+                    android:text="@{message}"
+                    android:textColor="?attr/primaryTextColor"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="end|bottom"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/negative_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ripple_effect_rect"
+                    android:contentDescription="@string/cancel"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="8dp"
+                    android:text="@{negativeAction}"
+                    android:textColor="?attr/primaryTextColor"
+                    android:textSize="14sp"
+                    android:visibility="@{cancelable ? View.VISIBLE : View.GONE}" />
+
+
+                <TextView
+                    android:id="@+id/positive_button"
+                    fontPath="@string/font_semi_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ripple_effect_rect"
+                    android:contentDescription="@string/send"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="8dp"
+                    android:text="@{positiveAction}"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorPrimaryTint"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dialog_content"
+            android:orientation="vertical"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}">
+
+            <include layout="@layout/progress_view" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</layout>
+
+
+

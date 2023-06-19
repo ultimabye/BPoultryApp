@@ -1,0 +1,23 @@
+<resources>
+    <declare-styleable name="FullscreenAttrs">
+        <attr name="fullscreenBackgroundColor" format="color" />
+        <attr name="fullscreenTextColor" format="color" />
+
+
+        <attr name="primaryBackgroundColor" format="color" />
+        <attr name="secondaryBackgroundColor" format="color" />
+        <attr name="secondaryBackgroundDimColor" format="color" />
+        <attr name="primaryTextColor" format="color" />
+        <attr name="primaryTintColor" format="color" />
+        <attr name="secondaryTintColor" format="color" />
+        <attr name="chartViewBackgroundColor" format="color" />
+        <attr name="chartRangeSelectedBackgroundColor" format="color" />
+        <attr name="tooltipBackgroundColor" format="color" />
+        <attr name="chartGridLineColor" format="color" />
+        <attr name="dividerColor" format="color" />
+        <attr name="navSearchBackgroundColor" format="color" />
+        <attr name="blurColor" format="color" />
+        <attr name="skeletonColor" format="color" />
+        <attr name="bubble_in_color" format="color" />
+    </declare-styleable>
+</resources>

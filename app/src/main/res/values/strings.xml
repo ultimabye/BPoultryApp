@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">BPoultry</string>
 
     <string-array name="options_array">
@@ -7,5 +7,249 @@
         <item>Option 3</item>
         <item>Option 4</item>
     </string-array>
+
+
+    <string name="send_now">Send Now</string>
+    <string name="email_user_name_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login">Login</string>
+    <string name="account">Account</string>
+    <string name="subscribers">Subscribers</string>
+    <string name="inbox">Inbox</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="view_password">View Password</string>
+    <string name="dashboard_button">Dashboard button</string>
+    <string name="inbox_button">Inbox button</string>
+    <string name="messages_button">Messages button</string>
+    <string name="create_new_message">Create new message</string>
+    <string name="lists">Lists</string>
+    <string name="email">Email</string>
+    <string name="emailNotifications">Email Notifications</string>
+    <string name="faq">FAQ</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms_of_use">Terms of Use</string>
+    <string name="logout">Logout</string>
+    <string name="go_next_icon">Go next icon</string>
+
+
+    <string name="sent_message_time_stamp">Sent on %s at %s</string>
+    <string name="scheduled_message_time_stamp">Scheduled for %s at %s</string>
+
+    <string name="date_yesterday">Yesterday</string>
+    <string name="subscriber_delete_msg">If you opt-out this subscriber, they will be removed from ALL your lists. You will not be able to send any further messages to them. Are you sure you want to do this?</string>
+    <string name="messages">Messages</string>
+    <string name="create_message">Create Message</string>
+    <string name="msg_empty_error">Looks like you forgot to type the message!</string>
+    <string name="header_empty_error">Header cannot be empty.</string>
+    <string name="shorten_url">Shorten URLs</string>
+    <string name="choose_subscribers">Choose Subscriber(s)</string>
+    <string name="choose_lists">Choose List(s)</string>
+    <string name="schedule_heading">Schedule</string>
+
+    <string name="enter_user_name">Please enter your email.</string>
+    <string name="enter_password">Please enter your password.</string>
+    <string name="invalid_user_name_password">The email and/or password you entered is invalid.</string>
+
+    <string name="failed_to_login">Error: %s</string>
+    <string name="empty_reply_error">Can\'t send empty reply.</string>
+    <string name="subscriber_delete_error">Error deleting subscriber, please try again later.</string>
+    <string name="send_reply_hint">Type your reply…</string>
+    <string name="new_message_hint">Type your message…</string>
+    <string name="search_hint">Search by name or number</string>
+
+    <string name="failed_to_send">Failed to send</string>
+    <string name="recipients">recipients</string>
+    <string name="opt_outs">Opt-outs</string>
+
+    <string name="error">Error! %s</string>
+    <string name="error_dialog_title">Error</string>
+
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="send_this_message">Send This Message?</string>
+    <string name="send">Send</string>
+    <string name="logout_msg">Are you sure you want to logout?</string>
+    <string name="done_list_selection">Done list selection</string>
+    <string name="replies_load_failed">Failed to load replies.</string>
+    <string name="opt_out_subscriber">Opt-Out Subscriber</string>
+    <string name="opt_out">Opt-Out</string>
+    <string name="character_limit_error">Header and Message cannot exceed %d characters</string>
+    <string name="reply_character_limit_error">Reply cannot exceed %d characters</string>
+
+    <string name="selected_list_count_label" tools:ignore="PluralsCandidate">%s &amp; %d more…</string>
+    <string name="selected_subscribers_count_label" tools:ignore="PluralsCandidate">%d Subscribers</string>
+
+
+    <string name="got_it">Got it</string>
+    <string name="next">Next</string>
+    <string name="keywords_button_desc">Keywords</string>
+    <string name="edit_header">Edit Header</string>
+    <string name="change_header">Change Header</string>
+    <string name="back">Back</string>
+    <string name="selection_check_box">Selection Check Box</string>
+    <string name="invalid_request">Invalid request</string>
+    <string name="keywords">Keywords</string>
+
+
+    <string name="invalid_email">Please check your email address.</string>
+    <string name="select_date_message">Please select a date to schedule message.</string>
+    <string name="schedule_this_message">Schedule This Message?</string>
+    <string name="account_locked">Unable to access account</string>
+    <string name="subscriber_opted_out">Subscriber has opted-out.</string>
+    <string name="done">Done</string>
+    <string name="unknown_error">Unknown Error</string>
+    <string name="inbox_notification_title">New reply from %s</string>
+    <string name="keyword_notification_title">Keyword Used</string>
+    <string name="keyword_notification_body">%s just used the keyword %s on %s</string>
+    <string name="recipients_count" tools:ignore="PluralsCandidate">%d recipients</string>
+    <string name="opt_out_count" tools:ignore="PluralsCandidate">%d opt-outs</string>
+    <string name="replies_count" tools:ignore="PluralsCandidate">%d replies</string>
+    <string name="inbox_notification_channel">New Replies</string>
+    <string name="keyword_notification_channel">Keywords</string>
+    <string name="inbox_channel_description">Notification to display when you receive a new reply.</string>
+    <string name="keyword_channel_description">Notification to display when a subscriber uses a keyword.</string>
+
+    <string name="reply_send_failed">Failed to send reply, this thread might have been deleted.</string>
+
+
+    <string name="name">Name</string>
+
+    <string name="settings">Settings</string>
+    <string name="select_an_account">Please select an account.</string>
+
+    <string name="support">Support</string>
+    <string name="cant_use_account">Cannot use this account.</string>
+
+    <string name="select">Select</string>
+    <string name="subscriber_search_hint">Search by name or number</string>
+    <string name="credit_warning">%d Credits</string>
+    <string name="character_count">%d/%d</string>
+    <string name="invalid_char_message">Remove this character and try again: %s</string>
+    <string name="invalid_char_message_title">Message Contains Invalid Character(s)</string>
+    <string name="invalid_char_header_title">Header Contains Invalid Character(s)</string>
+    <string name="invalid_char_reply_title">Reply Contains Invalid Character(s)</string>
+
+
+    <string name="activity_title_select_account">Select Account</string>
+    <string name="title_activity_main_drawer">MainDrawerActivity</string>
+
+
+    <string name="email_on_incoming_texts">Incoming Text</string>
+    <string name="email_on_opt_in">Opt-in</string>
+    <string name="email_on_opt_out">Opt-out</string>
+    <string name="email_on_message_failure">Message Failure</string>
+    <string name="incoming_texts_switch">Incoming Text</string>
+    <string name="keyword_use_switch">Keyword Use</string>
+    <string name="push_notifications">Push Notifications</string>
+    <string name="see_all">See All</string>
+    <string name="users">Users</string>
+    <string name="general">General</string>
+    <string name="scheduled_message_indicator">Scheduled message indicator.</string>
+    <string name="mms_image_preview">MMS image preview.</string>
+    <string name="total_subscribers_heading">Total Subscribers: </string>
+    <string name="total_subscribers_legend">Total Subscribers</string>
+    <string name="outgoing_texts">Outgoing texts</string>
+    <string name="incoming_texts">Incoming texts</string>
+    <string name="opt_ins">Opt-ins</string>
+
+
+    <string name="one_week">1 Week</string>
+    <string name="one_month">1 Month</string>
+    <string name="six_months">6 Months</string>
+    <string name="one_year">1 Year</string>
+
+    <string name="suffix_subscribers"> Subscribers</string>
+    <string name="all_keywords">All Keywords</string>
+    <string name="okay">Okay</string>
+
+
+    <string name="schedule_at">%s at %s</string>
+
+    <string name="edit_profile">Edit Subscriber</string>
+    <string name="recipients_not_selected_error">You haven\'t selected any recipients, you can send message to a list or individual subscribers.</string>
+
+    <string name="status_opted_in">Opted-in</string>
+    <string name="status_opted_out">Opted-out</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="phone">Phone</string>
+    <string name="status">Status</string>
+    <string name="opt_out_link">Opt-Out</string>
+    <string name="search">Search</string>
+
+    <string name="subaccount_of">Subaccount of %s</string>
+    <string name="feature_preview_screenshot">Feature Preview Screenshot</string>
+    <string name="unread_message_indicator">Unread Message Indicator</string>
+    <string name="no_keywords_in_account">No Keywords in Your Account.</string>
+    <string name="menu">Menu</string>
+    <string name="number">Number</string>
+    <string name="no_of_uses"># of uses</string>
+    <string name="no_of_opt_ins"># of opt-ins</string>
+    <string name="workflow_steps">Workflow Steps</string>
+    <string name="no_steps">No Steps</string>
+    <string name="add_media">Add Media</string>
+    <string name="additional_options">ADDITIONAL OPTIONS</string>
+    <string name="no_headers">No Headers</string>
+    <string name="header_info_msg">The message header is used to identify your organization.</string>
+    <string name="recently_used_headers">Recently Used Headers</string>
+    <string name="schedule_message">Schedule Message</string>
+    <string name="schedule_for_later">Schedule for later</string>
+    <string name="no_results">Nothing found, try something else…</string>
+    <string name="empty_inbox_msg">Nothing in Your Inbox Yet.</string>
+    <string name="no_lists_in_account">No Lists in Your Account.</string>
+    <string name="global_search_msg">Search Lists and Subscribers.</string>
+    <string name="archive">Archive</string>
+
+    <string name="workflow_steps_count" tools:ignore="PluralsCandidate">Workflow - %d Steps</string>
+    <string name="empty_subscriber_list_msg">No Subscribers</string>
+    <string name="empty_messages_msg">You Haven\'t Sent Any Messages Yet.</string>
+    <string name="slide_messages_heading">Create and send messages</string>
+    <string name="slide_messages_msg">Text entire lists or specific subscribers.</string>
+    <string name="slide_inbox_heading">Have two-way conversations</string>
+    <string name="slide_inbox_msg">Reply to incoming texts from the inbox.\nTip: enable push notifications.</string>
+    <string name="slide_dashboard_heading">Track Performance</string>
+    <string name="slide_dashboard_msg">Keep tabs on how your Clearstream accounts are performing.</string>
+    <string name="slide_accounts_heading">Manage multiple accounts</string>
+    <string name="slide_accounts_msg">Quickly switch between your Clearstream accounts.</string>
+    <string name="skip">Skip</string>
+    <string name="duplicate">Duplicate</string>
+    <string name="nothing_to_display">Nothing to display.</string>
+    <string name="expired_login_msg">Your login has expired. Please login again.</string>
+
+
+    <!--Font names-->
+    <string name="font_regular">sofiapro-regular.otf</string>
+    <string name="font_medium">sofiapro-medium.otf</string>
+    <string name="font_semi_bold">sofiapro-semibold.otf</string>
+    <string name="font_bold">sofiapro-bold.otf</string>
+    <string name="font_light">sofiapro-light.otf</string>
+    <string name="font_extra_light">sofiapro-extralight.otf</string>
+
+
+    <string name="replying_to_this_message">Replying to this message</string>
+    <string name="inactive">Inactive</string>
+    <string name="action_text_optin">Opt-in &amp; Add to List</string>
+    <string name="add_to_list">Add to List</string>
+    <string name="action_text_autoresponse">Send Text</string>
+    <string name="action_text_collect_data">Collect Name &amp; Email</string>
+    <string name="action_text_pushtopco">Push to Planning Center</string>
+    <string name="message_credits">Message Credits:</string>
+
+    <string name="not_available">n/a</string>
+    <string name="no_network_error">No network connection, please make sure your data connection is turned on or you are connected to a Wifi network.</string>
+    <string name="button">Button</string>
+    <string name="drawer_menu_button">Drawer Menu</string>
+    <string name="credits_help_title">Message Credits</string>
+    <string name="zero_count">0/0</string>
+    <string name="na">n/a</string>
+    <string name="notify_push_incoming_text_desc">Send a push notification whenever an incoming text is received.</string>
+    <string name="notify_push_keyword_use_desc">Send a push notification whenever a keyword is used.</string>
+
+    <string name="notify_email_opt_in_desc">Email me whenever a new subscriber opts-in.</string>
+    <string name="notify_email_opt_out_desc">Email me whenever a subscriber opts-out.</string>
+    <string name="notify_email_message_failure_desc">Email me whenever a message fails to send. (You will always get an email if a message you create fails to send.)</string>
+    <string name="notify_email_incoming_text_desc">Email me whenever an incoming text is received.</string>
+    <string name="notify_email_keyword_use_desc">Email me whenever a keyword is used.</string>
+
 
 </resources>

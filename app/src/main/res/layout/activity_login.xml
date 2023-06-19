@@ -1,81 +1,234 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><!--suppress AndroidUnknownAttribute -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isLoading"
+            type="boolean" />
+
+
+        <variable
+            name="error"
+            type="String" />
+
+
+        <variable
+            name="isShowingKeyboard"
+            type="boolean" />
+    </data>
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:padding="16dp"
-        android:background="@android:color/white">
+        tools:ignore="RtlSymmetry,RtlHardcoded">
 
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/ic_launcher_background"
-            android:contentDescription="App Logo"
-            android:scaleType="centerCrop"
-            android:layout_marginBottom="32dp" />
 
-        <EditText
-            android:id="@+id/inputUserName"
+        <RelativeLayout
+            android:id="@+id/blurredView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Username"
-            android:inputType="text"
-            android:background="@drawable/edittext_bg"
-            android:textColor="@android:color/black"
-            android:textColorHint="@android:color/darker_gray"
-            android:padding="12dp"
-            android:layout_marginBottom="16dp" />
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            android:background="?attr/primaryBackgroundColor">
 
-        <EditText
-            android:id="@+id/inputPassword"
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/inputContainer"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:visibility="@{isShowingKeyboard ? View.INVISIBLE : View.VISIBLE, default=visible}">
+
+
+                <ImageView
+                    android:id="@+id/cs_logo"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_above="@id/header_tv"
+                    android:layout_centerHorizontal="true"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/logo2" />
+
+
+                <TextView
+                    android:id="@+id/header_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Login"
+                    android:textColor="?attr/primaryTintColor"
+                    android:textSize="24sp"
+                    tools:ignore="MissingPrefix" />
+
+
+                <TextView
+                    android:id="@+id/errorTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{error}"
+                    android:textColor="@color/colorPrimaryError"
+                    android:textSize="12sp"
+                    android:visibility="@{error != null ? View.VISIBLE : View.GONE}" />
+
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:id="@+id/inputContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="horizontal"
+                    android:paddingStart="24dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="24dp"
+                    android:paddingBottom="8dp">
+
+
+                    <EditText
+                        android:id="@+id/inputUserName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:autofillHints="emailAddress"
+                        android:background="@drawable/edit_text_bg"
+                        android:imeOptions="actionDone"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:minHeight="48dp"
+                        android:singleLine="true"
+                        android:textColor="?attr/primaryTextColor"
+                        android:textColorHint="?attr/primaryTextColor"
+                        android:textSize="16sp"
+                        tools:ignore="UnusedAttribute" />
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:background="?attr/dividerColor" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:animateLayoutChanges="true"
+                    android:orientation="horizontal"
+                    android:paddingStart="24dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="24dp"
+                    android:paddingBottom="8dp">
+
+
+                    <EditText
+                        android:id="@+id/inputPassword"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight=".8"
+                        android:background="@drawable/edit_text_bg"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:minHeight="48dp"
+                        android:singleLine="true"
+                        android:textColor="?attr/primaryTextColor"
+                        android:textColorHint="?attr/primaryTextColor"
+                        android:textSize="16sp"
+                        tools:ignore="UnusedAttribute" />
+
+
+                    <ImageButton
+                        android:id="@+id/viewPasswordButton"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@android:color/transparent"
+                        android:padding="4dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_view_password"
+                        android:visibility="visible" />
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:background="?attr/dividerColor" />
+
+
+            </LinearLayout>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/loginButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/inputContainer"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/login_button_bg"
+                android:text="Login"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/blurringView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:background="@drawable/edittext_bg"
-            android:textColor="@android:color/black"
-            android:textColorHint="@android:color/darker_gray"
-            android:padding="12dp"
-            android:layout_marginBottom="32dp" />
-
-        <Button
-            android:id="@+id/loginButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:textColor="@android:color/white"
-            android:background="@drawable/button_bg"
-            android:padding="12dp"
-            android:textAllCaps="false"
-            android:layout_marginBottom="16dp" />
-
-        <TextView
-            android:id="@+id/textViewForgotPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Forgot password?"
-            android:textColor="@android:color/darker_gray"
-            android:layout_marginTop="8dp"
-            android:layout_gravity="center_horizontal" />
-
-        <TextView
-            android:id="@+id/textViewSignUp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Don't have an account? Sign up"
-            android:textColor="@android:color/darker_gray"
-            android:layout_marginTop="8dp"
-            android:layout_gravity="center_horizontal" />
-
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:clickable="@{isLoading}"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE, default=gone}" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_centerInParent="true"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}" />
+
+
+    </RelativeLayout>
+
+</layout>
+
