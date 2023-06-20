@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
 public class Shop {
 
     @PrimaryKey
-    @ColumnInfo(name = "id")
+    @ColumnInfo(name = "s_id")
     @SerializedName("id")
     public int id;
 
@@ -18,6 +18,4 @@ public class Shop {
     @ColumnInfo(name = "name")
     @SerializedName("name")
     public String name;
-
-
 }

@@ -2,6 +2,7 @@ package com.ultimabyte.bpoultry.api;
 
 
 import com.ultimabyte.bpoultry.Collection;
+import com.ultimabyte.bpoultry.CollectionListResponse;
 import com.ultimabyte.bpoultry.data.Shop;
 import com.ultimabyte.bpoultry.data.User;
 
@@ -27,6 +28,10 @@ public interface BPoultryApi {
 
     @GET("driver/{id}/shops/")
     Call<List<Shop>> shops(@Path("id") String userId);
+
+
+    @GET("collection/today")
+    Call<CollectionListResponse> collections();
 
 
     @POST("collection")

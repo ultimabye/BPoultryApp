@@ -204,7 +204,7 @@ public class SplashActivity extends AppCompatActivity {
         }
 
         //launch home-screen
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, CollectionsListActivity.class));
         finish();
     }
 }

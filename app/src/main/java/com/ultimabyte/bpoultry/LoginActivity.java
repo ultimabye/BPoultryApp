@@ -19,13 +19,8 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.ultimabyte.bpoultry.api.AccessToken;
-import com.ultimabyte.bpoultry.api.Authentication;
-import com.ultimabyte.bpoultry.api.BPoultryApi;
 import com.ultimabyte.bpoultry.api.RestService;
 import com.ultimabyte.bpoultry.data.User;
 import com.ultimabyte.bpoultry.databinding.ActivityLoginBinding;
@@ -34,13 +29,9 @@ import com.ultimabyte.bpoultry.utils.Logger;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 
-import java.net.HttpURLConnection;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -355,7 +346,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void startApp(User user) {
         AppSettings.saveUserId(this, user.id);
         //launch account chooser.
-        Intent accountChooser = new Intent(LoginActivity.this, MainActivity.class);
+        Intent accountChooser = new Intent(LoginActivity.this, CollectionsListActivity.class);
         accountChooser.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(accountChooser);
 

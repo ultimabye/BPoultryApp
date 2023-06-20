@@ -17,6 +17,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".CollectionsListActivity"
+            android:exported="false"
+            android:label="@string/title_activity_collections_list"
+            android:theme="@style/Theme.BPoultry" />
+        <activity
+            android:name=".CollectionsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_collections"
+            android:theme="@style/Theme.BPoultry.NoActionBar" />
+        <activity
             android:name=".SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
@@ -32,7 +42,7 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".SubmitCollectionActivity"
             android:exported="true" />
     </application>
 

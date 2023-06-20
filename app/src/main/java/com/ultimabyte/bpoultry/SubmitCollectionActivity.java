@@ -1,32 +1,24 @@
 package com.ultimabyte.bpoultry;
 
 import androidx.annotation.CallSuper;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ultimabyte.bpoultry.api.ApiRequestHandler;
 import com.ultimabyte.bpoultry.api.ApiRequestType;
-import com.ultimabyte.bpoultry.api.BPoultryApi;
 import com.ultimabyte.bpoultry.api.GenericApiResponse;
 import com.ultimabyte.bpoultry.api.RestService;
 import com.ultimabyte.bpoultry.data.BPoultryDB;
 import com.ultimabyte.bpoultry.data.BPoultryRepo;
 import com.ultimabyte.bpoultry.data.Shop;
-import com.ultimabyte.bpoultry.databinding.ActivityLoginBinding;
-import com.ultimabyte.bpoultry.databinding.ActivityMainBinding;
+import com.ultimabyte.bpoultry.databinding.ActivitySubmitCollectionBinding;
 import com.ultimabyte.bpoultry.utils.ErrorUtils;
 import com.ultimabyte.bpoultry.utils.Logger;
 
@@ -36,22 +28,14 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+public class SubmitCollectionActivity extends BaseActivity {
 
-public class MainActivity extends BaseActivity {
-
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = SubmitCollectionActivity.class.getSimpleName();
 
 
-    private ActivityMainBinding mBinding;
+    private ActivitySubmitCollectionBinding mBinding;
 
     private ShopsViewModel mViewModel;
-
-    private ArrayList<Runnable> mPendingRunnableList;
 
     private ShopsAdapter mAdapter;
 
@@ -61,8 +45,8 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        setContentView(R.layout.activity_submit_collection);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_submit_collection);
         mAdapter = new ShopsAdapter(this, new ArrayList<>());
         mBinding.spinnerOptions.setAdapter(mAdapter);
         mBinding.spinnerOptions.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -77,26 +61,23 @@ public class MainActivity extends BaseActivity {
 
             }
         });
-        mBinding.buttonSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mBinding.editTextNumber.getText().length() == 0) {
-                    showShortToast("Please enter a weight.");
-                    return;
-                }
+        mBinding.buttonSubmit.setOnClickListener(v -> {
+            if (mBinding.editTextNumber.getText().length() == 0) {
+                showShortToast("Please enter a weight.");
+                return;
+            }
 
 
-                if (mSelectedShop == null) {
-                    showShortToast("Please select a shop.");
-                    return;
-                }
+            if (mSelectedShop == null) {
+                showShortToast("Please select a shop.");
+                return;
+            }
 
-                try {
-                    int weight = Integer.parseInt(mBinding.editTextNumber.getText().toString());
-                    submitCollection(mSelectedShop.id, AppSettings.getUserId(MainActivity.this), weight);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            try {
+                int weight = Integer.parseInt(mBinding.editTextNumber.getText().toString());
+                submitCollection(mSelectedShop.id, AppSettings.getUserId(SubmitCollectionActivity.this), weight);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
@@ -157,20 +138,6 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    protected void runOnResume(Runnable runnable) {
-        if (!isDestroyed()) {
-            //submit runnable to main thread's queue.
-            BPoultry.shared().onMain(runnable);
-            return;
-        }
-
-        if (mPendingRunnableList == null) {
-            mPendingRunnableList = new ArrayList<>();
-        }
-        mPendingRunnableList.add(runnable);
-    }
-
-
     @SuppressWarnings("UnusedDeclaration")
     @Subscribe(threadMode = ThreadMode.ASYNC)
     public void onApiResponse(GenericApiResponse<List<?>> response) {
@@ -211,89 +178,5 @@ public class MainActivity extends BaseActivity {
                 handleFailedResponse(response, false, response.getRequestType());
             }
         }
-    }
-
-
-    @SuppressWarnings("UnusedDeclaration")
-    @Subscribe(threadMode = ThreadMode.ASYNC)
-    public void onCollectionResponse(GenericApiResponse<Collection> response) {
-
-    }
-
-
-    @SuppressWarnings("SameParameterValue")
-    protected void handleFailedResponse(GenericApiResponse<?> response,
-                                        boolean showToast,
-                                        ApiRequestType requestType) {
-        if (response.isCanceled()) {
-            Logger.d(this.getClass().getSimpleName(),
-                    "Canceled=" + requestType + " Skip handling error.");
-            return;
-        }
-        //execute this on main thread.
-        BPoultry.shared().onMain(() -> {
-            //check if we are already showing login screen, if so don't do anything.
-            if (BPoultry.shared().isShowingLoginScreen()) {
-                Logger.d(this.getClass().getSimpleName(),
-                        "LoginActivity is already visible, skip...");
-                return;
-            }
-
-
-            //check if we have api response.
-            if (response.getResponse() != null) {
-                //get error code.
-                int responseCode = response.getResponse().code();
-                //get error object.
-                String errorBody = ErrorUtils.getErrorBody(response.getResponse(),
-                        this.getClass().getSimpleName());
-                //handle invalid account / user status.
-                if (ErrorUtils.handleFailedApiResponse(this, responseCode,
-                        errorBody, this.getClass().getSimpleName())) {
-                    return;
-                }
-                //unexpected error, display error message.
-                String errorMessage = ErrorUtils.getErrorMessageSafely(errorBody,
-                        this.getClass().getSimpleName());
-                displayErrorView(errorMessage, showToast, requestType);
-            } else {
-                //display error message.
-                if (response.getErrorMessage() != null) {
-                    displayErrorView(response.getErrorMessage(), showToast, requestType);
-                } else {
-                    displayErrorView(getString(R.string.unknown_error), showToast, requestType);
-                }
-            }
-        });
-    }
-
-
-    @CallSuper
-    protected void displayErrorView(String errorMessage,
-                                    boolean showToast,
-                                    ApiRequestType requestType) {
-        if (showToast) {
-            showShortToast(String.format(getString(R.string.error), errorMessage));
-        } else {
-            showAlertDialogWith(errorMessage);
-        }
-    }
-
-
-    private void showAlertDialogWith(String msg) {
-
-        if (BaseActivity.sErrorDialogIsShown) {
-            Logger.d(this.getClass().getSimpleName(), "ErrorDialog sErrorDialogIsShown=" + BaseActivity.sErrorDialogIsShown);
-            return;
-        }
-        Logger.d(this.getClass().getSimpleName(), "ErrorDialog showing error dialog, msg=" + msg);
-        BaseActivity.sErrorDialogIsShown = true;
-        ErrorDialog.newInstance(getString(R.string.error_dialog_title), msg)
-                .show(getSupportFragmentManager(), ErrorDialog.class.getSimpleName());
-    }
-
-
-    protected void showShortToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 }

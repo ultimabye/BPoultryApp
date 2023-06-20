@@ -13,13 +13,14 @@ import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 
+import com.ultimabyte.bpoultry.Collection;
 import com.ultimabyte.bpoultry.data.converter.DateConverter;
 
 @SuppressWarnings("WeakerAccess")
 @Database(
         entities = {
-                Shop.class
-
+                Shop.class,
+                Collection.class
         },
         version = 1)
 
@@ -37,6 +38,8 @@ public abstract class BPoultryDB extends RoomDatabase {
     private static final String DATABASE_NAME = "clearstream-db";
 
     public abstract ShopsDao shopsDao();
+
+    public abstract CollectionsDao collectionsDao();
 
 
     private final MutableLiveData<Boolean> mIsDatabaseCreated = new MutableLiveData<>();

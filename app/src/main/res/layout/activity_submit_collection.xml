@@ -42,7 +42,7 @@
                 android:layout_marginBottom="32dp"
                 android:contentDescription="App Logo"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher_background" />
+                android:src="@drawable/app_icon" />
 
             <Spinner
                 android:id="@+id/spinnerOptions"
