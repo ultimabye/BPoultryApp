@@ -32,8 +32,8 @@ public class RestService {
     public static final String API_BASE_URL_DEBUG = "http://10.0.2.2:8000/api/v1/";
 
 
-    //public static final String API_BASE_URL = API_BASE_URL_PRODUCTION;
-    public static final String API_BASE_URL = API_BASE_URL_DEBUG;
+    public static final String API_BASE_URL = "http://178.128.96.60/api/v1/";
+    //public static final String API_BASE_URL = API_BASE_URL_DEBUG;
 
     //set this to true to intercept API calls and add desired response using FakeInterceptor.java
     private static final boolean ALLOW_FAKE_INTERCEPTOR = false;
