@@ -80,6 +80,10 @@ public class SubmitCollectionActivity extends BaseActivity {
                 e.printStackTrace();
             }
         });
+
+        mBinding.backButton.setOnClickListener(v -> {
+            finish();
+        });
     }
 
 
@@ -156,6 +160,22 @@ public class SubmitCollectionActivity extends BaseActivity {
                 //handle error.
                 handleFailedResponse(response, false, response.getRequestType());
             }
+        } else if (response.getRequestType() == ApiRequestType.fetchCollections) {
+            //hide loading indicator.
+            mBinding.setIsLoading(false);
+            if (response.isSuccessful()) {
+                //get messages response.
+                CollectionListResponse collectionListResponse = (CollectionListResponse) response.getResponse().body();
+                List<Collection> itemResponse = collectionListResponse.collection;
+                if (itemResponse != null) {
+                    //save messages to database.
+                    BPoultryDB database = BPoultry.shared().getDatabase();
+                    BPoultryRepo.shared().saveCollections(itemResponse);
+                }
+            } else {
+                //handle error.
+                handleFailedResponse(response, false, response.getRequestType());
+            }
         } else if (response.getRequestType() == ApiRequestType.submitCollection) {
             //hide loading indicator.
             mBinding.setIsLoading(false);
@@ -170,6 +190,7 @@ public class SubmitCollectionActivity extends BaseActivity {
                             ErrorDialog.newInstance("Success", "Collection submitted successfully.")
                                     .show(getSupportFragmentManager(), ErrorDialog.class.getSimpleName());
                             mBinding.editTextNumber.setText("");
+                            fetchCollections();
                         }
                     });
                 }
@@ -178,5 +199,15 @@ public class SubmitCollectionActivity extends BaseActivity {
                 handleFailedResponse(response, false, response.getRequestType());
             }
         }
+    }
+
+
+    private void fetchCollections() {
+        mBinding.setIsLoading(true);
+        //load page.
+        //enqueue api call.
+        ApiRequestHandler<CollectionListResponse> apiHandler = new ApiRequestHandler<>();
+        apiHandler.sendRequest(ApiRequestType.fetchCollections,
+                RestService.getAPI(this).collections());
     }
 }

@@ -2,6 +2,9 @@ package com.ultimabyte.bpoultry;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -59,6 +62,39 @@ public class CollectionsListActivity extends BaseActivity {
         mViewModel = new ViewModelProvider(this).get(CollectionsViewModel.class);
         //get all messages and observe for changes.
         subscribeUi(mViewModel.getCollections());
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_collections, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        if (item.getItemId() == R.id.action_logout) {
+            logout();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    private void logout() {
+        BPoultry.shared().async(() -> {
+            BPoultry.shared().getRepository().clearAllData();
+            AppSettings.clearAppSettings(CollectionsListActivity.this);
+            BPoultry.shared().onMain(() -> {
+                Intent login = new Intent(CollectionsListActivity.this, LoginActivity.class);
+                login.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(login);
+                finish();
+            });
+        });
     }
 
 

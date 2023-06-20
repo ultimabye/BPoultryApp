@@ -116,7 +116,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
 
         mShakeAnimation = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.shake_slow);
-        KeyboardVisibilityEvent.setEventListener(this, isOpen -> mBinding.setIsShowingKeyboard(isOpen));
     }
 
 

@@ -28,26 +28,50 @@
         android:layout_height="match_parent"
         tools:ignore="RtlSymmetry,RtlHardcoded">
 
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:contentDescription="App Logo"
+            android:padding="12dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_back" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/back_button"
             android:gravity="center"
             android:orientation="vertical"
             android:padding="16dp">
 
             <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginBottom="32dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:contentDescription="App Logo"
                 android:scaleType="centerCrop"
-                android:src="@drawable/app_icon" />
+                android:src="@drawable/ic_backup" />
+
+
+            <TextView
+                android:id="@+id/header_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="Send New Collection"
+                android:textColor="?attr/primaryTintColor"
+                android:textSize="24sp"
+                tools:ignore="MissingPrefix" />
 
             <Spinner
                 android:id="@+id/spinnerOptions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/edittext_bg"
                 android:entries="@array/options_array"
