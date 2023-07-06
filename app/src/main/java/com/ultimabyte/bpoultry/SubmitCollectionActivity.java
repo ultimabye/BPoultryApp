@@ -52,13 +52,12 @@ public class SubmitCollectionActivity extends BaseActivity {
         mBinding.spinnerOptions.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Shop shop = mAdapter.getItem(position);
-                mSelectedShop = shop;
+                mSelectedShop = mAdapter.getItem(position);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                mSelectedShop = null;
             }
         });
         mBinding.buttonSubmit.setOnClickListener(v -> {
@@ -78,6 +77,7 @@ public class SubmitCollectionActivity extends BaseActivity {
                 submitCollection(mSelectedShop.id, AppSettings.getUserId(SubmitCollectionActivity.this), weight);
             } catch (Exception e) {
                 e.printStackTrace();
+                showShortToast(ErrorUtils.getErrorMessage(e));
             }
         });
 
@@ -155,11 +155,11 @@ public class SubmitCollectionActivity extends BaseActivity {
                     //save messages to database.
                     BPoultryDB database = BPoultry.shared().getDatabase();
                     BPoultryRepo.shared().saveShops(shopsResponse);
+                    return;
                 }
-            } else {
-                //handle error.
-                handleFailedResponse(response, false, response.getRequestType());
             }
+            //handle error.
+            handleFailedResponse(response, false, response.getRequestType());
         } else if (response.getRequestType() == ApiRequestType.fetchCollections) {
             //hide loading indicator.
             mBinding.setIsLoading(false);
@@ -171,11 +171,11 @@ public class SubmitCollectionActivity extends BaseActivity {
                     //save messages to database.
                     BPoultryDB database = BPoultry.shared().getDatabase();
                     BPoultryRepo.shared().saveCollections(itemResponse);
+                    return;
                 }
-            } else {
-                //handle error.
-                handleFailedResponse(response, false, response.getRequestType());
             }
+            //handle error.
+            handleFailedResponse(response, false, response.getRequestType());
         } else if (response.getRequestType() == ApiRequestType.submitCollection) {
             //hide loading indicator.
             mBinding.setIsLoading(false);
@@ -183,21 +183,18 @@ public class SubmitCollectionActivity extends BaseActivity {
                 //get messages response.
                 Collection cResponse = (Collection) response.getResponse().body();
                 if (cResponse != null) {
-                    BPoultry.shared().onMain(new Runnable() {
-                        @Override
-                        public void run() {
-                            //save messages to database.
-                            ErrorDialog.newInstance("Success", "Collection submitted successfully.")
-                                    .show(getSupportFragmentManager(), ErrorDialog.class.getSimpleName());
-                            mBinding.editTextNumber.setText("");
-                            fetchCollections();
-                        }
+                    BPoultry.shared().onMain(() -> {
+                        //save messages to database.
+                        ErrorDialog.newInstance("Success", "Collection submitted successfully.")
+                                .show(getSupportFragmentManager(), ErrorDialog.class.getSimpleName());
+                        mBinding.editTextNumber.setText("");
+                        fetchCollections();
                     });
+                    return;
                 }
-            } else {
-                //handle error.
-                handleFailedResponse(response, false, response.getRequestType());
             }
+            //handle error.
+            handleFailedResponse(response, false, response.getRequestType());
         }
     }
 
